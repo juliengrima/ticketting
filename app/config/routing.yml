@@ -1,0 +1,45 @@
+##########################################
+############   Routes APP   ##############
+##########################################
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+app_ticket:
+    resource: "@AppBundle/Resources/config/routing/ticket.yml"
+    prefix:   /ticket
+
+###################################################################################################################
+
+##########################################
+########   Routes Calendrier   ###########
+##########################################
+
+#calendar:
+#    resource: "@CalendarBundle/Resources/config/routing.yml"
+#    prefix:   /
+#    options:
+#        expose: true
+
+##########################################
+###########   Routes ADMIN   #############
+##########################################
+
+#admin:
+#    resource: "@AdminBundle/Resources/config/routing.yml"
+#    prefix:   /admin
+
+##########################################
+############   FosJSRoutung   ############
+##########################################
+
+#fos_js_routing:
+#    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+#    prefix:   /
+
+##########################################
+##############   FosJUser   ##############
+##########################################
+
+#fos_user:
+#    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

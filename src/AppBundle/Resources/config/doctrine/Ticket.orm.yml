@@ -1,0 +1,30 @@
+AppBundle\Entity\Ticket:
+  type: entity
+  table: null
+  repositoryClass: AppBundle\Repository\TicketRepository
+  id:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+  fields:
+    society:
+      type: string
+      length: 60
+      nullable: false
+    user_name:
+      type: string
+      length: 100
+      nullable: false
+    phone:
+      type: integer
+    email:
+      type: string
+      length: 255
+    comment:
+      type: text
+    date:
+      type: date
+
+  lifecycleCallbacks: {  }
