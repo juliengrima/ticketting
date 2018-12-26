@@ -81,17 +81,14 @@
                         </td>
                         <td class="">
                             <ul>
-                                <li>
-                                    <a href="{{ path('ticket_show', { 'id': ticket.id }) }}">Voir ce ticket</a>
-                                </li>
-                                {% if is_granted('ROLE_ADMIN') %}
+                                {#{% if is_granted('ROLE_ADMIN') %}#}
                                 <li>
                                     <a href="{{ path('ticket_edit', { 'id': ticket.id }) }}">Modifier</a>
                                 </li>
                                 <li>
                                     <a href="{{ path('ticket_edit', { 'id': ticket.id }) }}">Ajout à l'agenda</a>
                                 </li>
-                                {% endif %}
+                                {#{% endif %}#}
                             </ul>
                         </td>
                     </tr>
