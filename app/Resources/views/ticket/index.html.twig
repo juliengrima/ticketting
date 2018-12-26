@@ -90,9 +90,6 @@
                             {% if is_granted('ROLE_ADMIN') %}
                                 <td class="calendar-td-twig ombre">
                                     <ul>
-                                        {#<li>#}
-                                            {#<a href="{{ path('ticket_show', { 'id': ticket.id }) }}">show</a>#}
-                                        {#</li>#}
                                         <li>
                                             <a href="{{ path('ticket_edit', { 'id': ticket.id }) }}">edit</a>
                                         </li>
@@ -104,6 +101,20 @@
                     {% endfor %}
 
                     </tbody>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <tfoot>
+                        <tr>
+                            <td colspan="2"></td>
+                        <td>
+                            <ul class="actions">
+                                <li>
+                                    <a href="{{ path('ticket_new') }}" class="button small primary icon fa-download">Nouveau</a>
+                                </li>
+                            </ul>
+                        </td>
+                        </tr>
+                    </tfoot>
+                    {% endif %}
                 </table>
 
             </div>
