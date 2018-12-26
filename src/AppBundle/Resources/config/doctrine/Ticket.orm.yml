@@ -1,3 +1,4 @@
+
 AppBundle\Entity\Ticket:
   type: entity
   table: null

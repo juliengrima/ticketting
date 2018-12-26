@@ -29,6 +29,12 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
+    # [...] SearchBundle/Service
+    search.service:
+        class: SearchBundle\Services\SearchService
+        arguments: ['@service_container']
+
+
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
     #     arguments:
