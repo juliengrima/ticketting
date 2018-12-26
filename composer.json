@@ -5,8 +5,7 @@
     "autoload": {
         "psr-4": {
             "AppBundle\\": "src/AppBundle",
-            "CalendarBundle\\": "src/CalendarBundle",
-            "SearchBundle\\": "src/SearchBundle",
+            "SearchBundle\\": "src/SearchBundle"
         },
         "classmap": [
             "app/AppKernel.php",
@@ -23,6 +22,7 @@
     },
     "require": {
         "php": ">=5.5.9",
+        "beberlei/DoctrineExtensions": "^1.1",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
         "friendsofsymfony/user-bundle": "~2.0",

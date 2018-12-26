@@ -13,7 +13,7 @@
             </div>
             <div class="content">
                 <div class="inner">
-                    <h1>Ticketting Applet</h1>
+                    <h1><a href="{{ path('homepage') }}">Ticketting Applet</a></h1>
                     <p>An application to make tickets<br />
                         and screen dates in calendar</p>
                 </div>
@@ -21,10 +21,17 @@
             <nav>
                 <ul>
                     <li><a href="{{ path('ticket_index') }}">Tickets</a></li>
-                    <li><a href="#">Work</a></li>
+                    <li><a href="{{ path('ticket_new') }}">Nouveau ticket</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li>
-                    <li><a href="#">Elements</a></li>
+                    <li>
+                        <form action="{{ path('searchController') }}" method="Post" class="h-form">
+                            <div class="">
+                                <input class="input-color" name="requete" id="search" type="search" required>
+                                    <i class="material-icons h-button" id="search-burger">search</i>
+                            </div>
+                        </form>
+                    </li>
                 </ul>
             </nav>
         </header>

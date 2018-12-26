@@ -1,4 +1,4 @@
-{% extends '@Calendar/layout.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block body %}
 
@@ -28,65 +28,85 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="row">
+        <div class="col s12">
 
-        <div class="row">
-            <div class="col s12">
+            {# TABLE  #}
+            <table class=" responsive-table bordered striped" id="table_id">
+                <thead>
 
-                {# TABLE  #}
-                <table class=" responsive-table bordered striped" id="table_id">
-                    <thead>
+                <th class="">
+                    <p class=" center">
+                        N° du ticket
+                    </p>
+                </th>
 
-                        <th class="">
-                            <p class=" center">
-                                Catégorie
-                            </p>
-                        </th>
-                        <th class="">
-                            <p class=" center">
-                                Titre du film
-                            </p>
-                        </th>
-                        <th class="">
-                            <p class="center">
-                                Synopsis
-                            </p>
-                        </th>
+                <th class="">
+                    <p class=" center">
+                        Utilisateur
+                    </p>
+                </th>
+                <th class="">
+                    <p class="center">
+                        Commentaire
+                    </p>
+                </th>
+                <th class="">
+                    <p class="align-center">
+                        Actions
+                    </p>
+                </th>
 
-                    </thead>
-                    <tbody>
+                </thead>
+                <tbody>
 
-                    {# RESULT LOOP #}
+                {# RESULT LOOP #}
 
-                    {% for resultat in resultats %}
+                {% for ticket in resultats %}
 
-                        <tr class="collection">
-                            <td class="calendar-td-twig center">
-                                {{ resultat.category}}
-                            </td>
-                            <td class="calendar-td-twig center">
-                                <a href="{{ path('movies_show', { 'id': resultat.id }) }} " class="collection-item">
-                                    {{ resultat.movies }}
-                                </a>
-                            </td>
-                            <td class="calendar-td-twig ombre">
-                                {{ resultat.resume|raw }}
-                            </td>
-                        </tr>
+                    <tr class="collection">
+                        <td class="">
+                            {{ ticket.id }} <br />
+                            {% if ticket.date %}{{ ticket.date|date('d-m-Y') }}{% endif %}
+                        </td>
+                        <td class="">
 
-                    {% endfor %}
+                            {{ ticket.society }} <br />
+                            {{ ticket.user_name }} <br />
+                            {{ ticket.phone }} <br />
+                            {{ ticket.email }}
+                        </td>
+                        <td class="">
+                            {{ ticket.comment |raw }}
+                        </td>
+                        <td class="">
+                            <ul>
+                                <li>
+                                    <a href="{{ path('ticket_show', { 'id': ticket.id }) }}">Voir ce ticket</a>
+                                </li>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                <li>
+                                    <a href="{{ path('ticket_edit', { 'id': ticket.id }) }}">Modifier</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('ticket_edit', { 'id': ticket.id }) }}">Ajout à l'agenda</a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </td>
+                    </tr>
 
-                    </tbody>
-                </table>
+                {% endfor %}
 
-            </div>
+                </tbody>
+            </table>
+
         </div>
     </div>
-
 
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-    <script type="text/javascript" src="{{ asset('bundles/calendar/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
 {% endblock %}

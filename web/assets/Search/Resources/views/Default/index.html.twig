@@ -1,0 +1,203 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h3 class="center">Résultats de votre recherche.</h3>
+
+                {# GIVE MESSAGE FOR RESEARCH #}
+
+                {% if app.session.flashBag.has('error') %}
+                    <div class="alert alert-success">
+                        {% for msg in app.session.flashBag.get('error') %}
+                            {{ msg }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if app.session.flashBag.has('success') %}
+                    <div class="alert alert-success">
+                        {% for msg in app.session.flashBag.get('success') %}
+                            {{ msg }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col s12">
+
+                {# TABLE  #}
+                <table class=" responsive-table bordered striped" id="table_id">
+                    <thead>
+
+                    <th class="">
+                        <p class=" center">
+                            N° du ticket
+                        </p>
+                    </th>
+
+                    <th class="">
+                        <p class=" center">
+                            Utilisateur
+                        </p>
+                    </th>
+                    <th class="">
+                        <p class="center">
+                            Commentaire
+                        </p>
+                    </th>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <th class="">
+                            <p class="center">
+                                Actions
+                            </p>
+                        </th>
+                    {% endif %}
+
+                    </thead>
+                    <tbody>
+
+                    {# RESULT LOOP #}
+
+                    {% for ticket in resultats %}
+
+                        <tr class="collection">
+                            <td class="calendar-td-twig center">
+                                {{ ticket.id }} <br />
+                                {% if ticket.date %}{{ ticket.date|date('d-m-Y') }}{% endif %}
+                            </td>
+                            <td class="calendar-td-twig center">
+
+                                {{ ticket.society }} <br />
+                                {{ ticket.username }} <br />
+                                {{ ticket.phone }} <br />
+                                {{ ticket.email }}
+                            </td>
+                            <td class="calendar-td-twig ombre">
+                                {{ ticket.comment |raw }}
+                            </td>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <td class="calendar-td-twig ombre">
+                                    <ul>
+                                        <li>
+                                            <a href="{{ path('ticket_show', { 'id': ticket.id }) }}">Voir ce ticket</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('ticket_edit', { 'id': ticket.id }) }}">Modifier</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('ticket_edit', { 'id': ticket.id }) }}">Ajout à l'agenda</a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            {% endif %}
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    {#<div class="container">#}
+        {#<div class="row">#}
+            {#<div class="col s12">#}
+                {#<h3 class="center">Résultats de votre recherche.</h3>#}
+
+                {# GIVE MESSAGE FOR RESEARCH #}
+
+                {#{% if app.session.flashBag.has('error') %}#}
+                    {#<div class="alert alert-success">#}
+                        {#{% for msg in app.session.flashBag.get('error') %}#}
+                            {#{{ msg }}#}
+                        {#{% endfor %}#}
+                    {#</div>#}
+                {#{% endif %}#}
+                {#{% if app.session.flashBag.has('success') %}#}
+                    {#<div class="alert alert-success">#}
+                        {#{% for msg in app.session.flashBag.get('success') %}#}
+                            {#{{ msg }}#}
+                        {#{% endfor %}#}
+                    {#</div>#}
+                {#{% endif %}#}
+
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+
+    {#<div class="container">#}
+
+        {#<div class="row">#}
+            {#<div class="col s12">#}
+
+                {# TABLE  #}
+                {#<table class=" responsive-table bordered striped" id="table_id">#}
+                    {#<thead>#}
+
+                        {#<th class="">#}
+                            {#<p class=" center">#}
+                                {#Catégorie#}
+                            {#</p>#}
+                        {#</th>#}
+                        {#<th class="">#}
+                            {#<p class=" center">#}
+                                {#Titre du film#}
+                            {#</p>#}
+                        {#</th>#}
+                        {#<th class="">#}
+                            {#<p class="center">#}
+                                {#Synopsis#}
+                            {#</p>#}
+                        {#</th>#}
+
+                    {#</thead>#}
+                    {#<tbody>#}
+
+                    {# RESULT LOOP #}
+
+                    {#{% for resultat in resultats %}#}
+
+                        {#<tr class="collection">#}
+                            {#<td class="calendar-td-twig center">#}
+                                {#{{ resultat.category}}#}
+                            {#</td>#}
+                            {#<td class="calendar-td-twig center">#}
+                                {#<a href="{{ path('ticket_show', { 'id': ticket.id }) }} " class="collection-item">#}
+                                    {#{{ resultat.movies }}#}
+                                {#</a>#}
+                            {#</td>#}
+                            {#<td class="calendar-td-twig ombre">#}
+                                {#{{ resultat.resume|raw }}#}
+                            {#</td>#}
+                        {#</tr>#}
+
+                    {#{% endfor %}#}
+
+                    {#</tbody>#}
+                {#</table>#}
+
+            {#</div>#}
+        {#</div>#}
+    {#</div>#}
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/calendar/js/jquery.dataTables.min.js') }}"></script>
+{% endblock %}

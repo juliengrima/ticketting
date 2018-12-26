@@ -22,29 +22,27 @@ class SearchService extends Controller
     }
 
     public function getSearchPostTitre($requete){
-//        Alias 'm' = AppBunble:Movies
+//        Alias 't' = AppBunble:Ticket
 //        Alias 'c' = category
 //        Alias 'h' = header
 //        Alias 'me' = media
 
         $repository = $this->getDoctrine()
-            ->getRepository('AppBundle:Movies');
+            ->getRepository('AppBundle:Ticket');
 
-        $qb = $repository->createQueryBuilder('m')
+        $qb = $repository->createQueryBuilder('t')
 //            SELECT ALL FIELDS WE NEED
-            ->select('m.actors, m.author, m.movies, m.resume, m.nationality, m.releaseDate, m.id, c.category')
+            ->select('t.user_name, t.society, t.phone, t.date, t.comment, t.email, t.id')
 //            JOIN ENTITIES
-            ->join ('m.gallery', 'c')
 //            TAKE INDICATIONS FOR FILEDS WITH REGEXP
-            ->where('REGEXP(m.movies, :regexp) != false')
-            ->orWhere('REGEXP(m.resume, :regexp)  != false')
-            ->orWhere('REGEXP(m.author, :regexp)  != false')
-            ->orWhere('REGEXP(m.actors, :regexp)  != false')
-            ->orWhere('REGEXP(m.nationality, :regexp)  != false')
-            ->orWhere('REGEXP(m.releaseDate, :regexp)  != false')
-            ->orWhere('REGEXP(c.category, :regexp)  != false')
+            ->where('REGEXP(t.user_name, :regexp) != false')
+            ->orWhere('REGEXP(t.society, :regexp)  != false')
+            ->orWhere('REGEXP(t.phone, :regexp)  != false')
+            ->orWhere('REGEXP(t.date, :regexp)  != false')
+            ->orWhere('REGEXP(t.comment, :regexp)  != false')
+            ->orWhere('REGEXP(t.email, :regexp)  != false')
             ->setParameter('regexp', $requete)
-            ->orderBy('m.movies');
+            ->orderBy('t.date');
         return $qb->getQuery()->getResult();
     }
 }

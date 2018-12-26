@@ -1637,3 +1637,60 @@ input, select, textarea {
 		body.is-preload #footer {
 			opacity: 0;
 		}
+
+/*------------------------- Other css -------------------------*/
+
+p{
+	height: 0px;
+}
+
+textarea{
+	width: 250px;
+	height: 120px;
+}
+
+.input-color{
+	color: #6E6E6E;
+}
+
+.input-field{
+	margin-top: 0%;
+	width: 100%;
+}
+
+.h-form{
+	height: 0px;
+	width: 100%;
+	margin-left: 2%;
+	margin-top: 1%;
+}
+
+.h-button{
+	height: 30px;
+	width: 30px;
+}
+
+.left{
+	float: left;
+}
+
+.right{
+	float: right;
+}
+
+.m-right{
+	margin-left: 20px;
+}
+
+.m-top{
+	margin-top: 50%;
+}
+
+.m-bottom{
+	margin-bottom: 2%;
+}
+
+.d-font{
+	font-style: italic;
+	font-size: 0.8em;
+}

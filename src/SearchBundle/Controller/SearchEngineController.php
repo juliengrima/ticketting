@@ -8,8 +8,8 @@
 
 namespace SearchBundle\Controller;
 
-use SearchBundle\SearchBundle;
-use SearchBundle\Services\SearchService;
+use Search\SearchBundle;
+use Search\Services\SearchService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\DataTransformerInterface;

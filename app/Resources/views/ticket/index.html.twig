@@ -32,95 +32,92 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="row">
+        <div class="col s12">
 
-        <div class="row">
-            <div class="col s12">
+            {# TABLE  #}
+            <table class=" responsive-table bordered striped" id="table_id">
+                <thead>
 
-                {# TABLE  #}
-                <table class=" responsive-table bordered striped" id="table_id">
-                    <thead>
+                <th class="">
+                    <p class=" center">
+                        N° du ticket
+                    </p>
+                </th>
 
-                    <th class="">
-                        <p class=" center">
-                            N° du ticket
-                        </p>
-                    </th>
-
-                    <th class="">
-                        <p class=" center">
-                            Utilisateur
-                        </p>
-                    </th>
+                <th class="">
+                    <p class=" center">
+                        Utilisateur
+                    </p>
+                </th>
+                <th class="">
+                    <p class="center">
+                        Commentaire
+                    </p>
+                </th>
+                {% if is_granted('ROLE_ADMIN') %}
                     <th class="">
                         <p class="center">
-                            Commentaire
+                            Actions
                         </p>
                     </th>
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <th class="">
-                            <p class="center">
-                                Actions
-                            </p>
-                        </th>
-                    {% endif %}
+                {% endif %}
 
-                    </thead>
-                    <tbody>
+                </thead>
+                <tbody>
 
-                    {# RESULT LOOP #}
+                {# RESULT LOOP #}
 
-                    {% for ticket in tickets %}
+                {% for ticket in tickets %}
 
-                        <tr class="collection">
-                            <td class="calendar-td-twig center">
-                                {{ ticket.id }} <br />
-                                {% if ticket.date %}{{ ticket.date|date('d-m-Y') }}{% endif %}
-                            </td>
-                            <td class="calendar-td-twig center">
-
-                                {{ ticket.society }} <br />
-                                {{ ticket.username }} <br />
-                                {{ ticket.phone }} <br />
-                                {{ ticket.email }}
-                            </td>
-                            <td class="calendar-td-twig ombre">
-                                {{ ticket.comment |raw }}
-                            </td>
-                            {% if is_granted('ROLE_ADMIN') %}
-                                <td class="calendar-td-twig ombre">
-                                    <ul>
-                                        <li>
-                                            <a href="{{ path('ticket_edit', { 'id': ticket.id }) }}">Modifier</a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ path('ticket_edit', { 'id': ticket.id }) }}">Ajout à l'agenda</a>
-                                        </li>
-                                    </ul>
-                                </td>
-                            {% endif %}
-                        </tr>
-
-                    {% endfor %}
-
-                    </tbody>
-                    {% if is_granted('ROLE_ADMIN') %}
-                    <tfoot>
-                        <tr>
-                            <td colspan="2"></td>
-                        <td>
-                            <ul class="actions">
-                                <li>
-                                    <a href="{{ path('ticket_new') }}" class="button small primary icon fa-download">Nouveau</a>
-                                </li>
-                            </ul>
+                    <tr class="collection">
+                        <td class="calendar-td-twig center">
+                            {{ ticket.id }} <br />
+                            {% if ticket.date %}{{ ticket.date|date('d-m-Y') }}{% endif %}
                         </td>
-                        </tr>
-                    </tfoot>
-                    {% endif %}
-                </table>
+                        <td class="calendar-td-twig center">
 
-            </div>
+                            {{ ticket.society }} <br />
+                            {{ ticket.username }} <br />
+                            {{ ticket.phone }} <br />
+                            {{ ticket.email }}
+                        </td>
+                        <td class="calendar-td-twig ombre">
+                            {{ ticket.comment |raw }}
+                        </td>
+                        {#{% if is_granted('ROLE_ADMIN') %}#}
+                            <td class="calendar-td-twig ombre">
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('ticket_edit', { 'id': ticket.id }) }}">Modifier</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ path('ticket_edit', { 'id': ticket.id }) }}">Ajout à l'agenda</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        {#{% endif %}#}
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+                {% if is_granted('ROLE_ADMIN') %}
+                <tfoot>
+                    <tr>
+                        <td colspan="2"></td>
+                    <td>
+                        <ul class="actions">
+                            <li>
+                                <a href="{{ path('ticket_new') }}" class="button small primary icon fa-download">Nouveau</a>
+                            </li>
+                        </ul>
+                    </td>
+                    </tr>
+                </tfoot>
+                {% endif %}
+            </table>
+
         </div>
     </div>
 
@@ -129,5 +126,5 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script type="text/javascript" src="{{ asset('bundles/calendar/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
 {% endblock %}

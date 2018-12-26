@@ -1,3 +1,7 @@
+search:
+    resource: "@SearchBundle/Resources/config/routing.yml"
+    prefix:   /
+
 ##########################################
 ############   Routes APP   ##############
 ##########################################
@@ -8,6 +12,15 @@ app:
 app_ticket:
     resource: "@AppBundle/Resources/config/routing/ticket.yml"
     prefix:   /ticket
+
+##########################################
+############   Routes Search   ###########
+##########################################
+
+searchController:
+    path:     /search
+    defaults: { _controller: SearchBundle:SearchEngine:search }
+    methods:  [GET, POST]
 
 ###################################################################################################################
 
