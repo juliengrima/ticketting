@@ -1,5 +1,10 @@
 {% extends 'layout.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+{% endblock %}
+
 {% block body %}
 
     <div class="container">
@@ -63,8 +68,11 @@
                 {# RESULT LOOP #}
 
                 {% for ticket in resultats %}
-
-                    <tr class="collection">
+                    {% if ticket.treated != null %}
+                        <tr class="collection">
+                    {% else %}
+                        <tr class="">
+                    {% endif %}
                         <td class="">
                             {{ ticket.id }} <br />
                             {% if ticket.date %}{{ ticket.date|date('d-m-Y') }}{% endif %}
@@ -80,16 +88,19 @@
                             {{ ticket.comment |raw }}
                         </td>
                         <td class="">
-                            <ul>
-                                {#{% if is_granted('ROLE_ADMIN') %}#}
-                                <li>
-                                    <a href="{{ path('ticket_edit', { 'id': ticket.id }) }}">Modifier</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('ticket_edit', { 'id': ticket.id }) }}">Ajout à l'agenda</a>
-                                </li>
-                                {#{% endif %}#}
-                            </ul>
+                            {% if ticket.treated == null %}
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('ticket_edit', { 'id': ticket.id }) }}">Modifier</a>
+                                    </li>
+                                </ul>
+                            {% else %}
+                                <ul>
+                                    <li>
+                                        <p>Ticket traité</p>
+                                    </li>
+                                </ul>
+                            {% endif %}
                         </td>
                     </tr>
 
@@ -105,5 +116,11 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script type="text/javascript" src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready( function () {
+            $('#myTable').DataTable();
+        } );
+    </script>
 {% endblock %}

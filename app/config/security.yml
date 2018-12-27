@@ -2,22 +2,12 @@
 # https://symfony.com/doc/current/security.html
 security:
 
-    encoders:
-        FOS\UserBundle\Model\UserInterface: bcrypt
-
-    role_hierarchy:
-
-        ROLE_ADMIN: ROLE_USER
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
-
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         in_memory:
             memory: ~
         fos_userbundle:
             id: fos_user.user_provider.username
-
-
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -37,18 +27,22 @@ security:
                 path: fos_user_security_logout
                 target: passwordpage
 
-            anonymous:    true
+            anonymous: true
+
+    #   FOSUSER SECURITY
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+
+    role_hierarchy:
+        ROLE_USER:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     access_control:
-        - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin, role: ROLE_ADMIN }
-
-          # activate different ways to authenticate
-
-          # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-          #http_basic: ~
-
-          # https://symfony.com/doc/current/security/form_login_setup.html
-        #form_login: ~
+        - { path: ^/ticket, role: ROLE_USER }
+        - { path: ^/ticket/new, role: ROLE_USER }
+        - { path: ^/home, role: ROLE_USER }
+        - { path: ^/home, role: ROLE_ADMIN }

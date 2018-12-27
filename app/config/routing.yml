@@ -22,8 +22,8 @@ searchController:
 ###########   Routes ADMIN   #############
 ##########################################
 
-admin:
-    resource: "@AdminBundle/Resources/config/routing.yml"
+admin_ticket:
+    resource: "@AppBundle/Resources/config/routing.yml"
     prefix:   /admin
 
 fos_user:

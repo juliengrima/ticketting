@@ -32,7 +32,7 @@ class SearchService extends Controller
 
         $qb = $repository->createQueryBuilder('t')
 //            SELECT ALL FIELDS WE NEED
-            ->select('t.user_name, t.society, t.phone, t.date, t.comment, t.email, t.id')
+            ->select('t.user_name, t.society, t.phone, t.date, t.comment, t.email, t.id, t.treated')
 //            JOIN ENTITIES
 //            TAKE INDICATIONS FOR FILEDS WITH REGEXP
             ->where('REGEXP(t.user_name, :regexp) != false')

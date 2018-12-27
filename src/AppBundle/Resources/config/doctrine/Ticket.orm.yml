@@ -28,5 +28,8 @@ AppBundle\Entity\Ticket:
       type: text
     date:
       type: date
+    treated:
+      type: boolean
+      nullable: true
 
   lifecycleCallbacks: {  }

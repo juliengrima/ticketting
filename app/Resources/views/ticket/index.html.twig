@@ -55,14 +55,11 @@
                         Commentaire
                     </p>
                 </th>
-                {% if is_granted('ROLE_ADMIN') %}
                     <th class="">
                         <p class="center">
                             Actions
                         </p>
                     </th>
-                {% endif %}
-
                 </thead>
                 <tbody>
 
@@ -70,7 +67,7 @@
 
                 {% for ticket in tickets %}
 
-                    <tr class="collection">
+                    <tr class="">
                         <td class="calendar-td-twig center">
                             {{ ticket.id }} <br />
                             {% if ticket.date %}{{ ticket.date|date('d-m-Y') }}{% endif %}
@@ -85,37 +82,28 @@
                         <td class="calendar-td-twig ombre">
                             {{ ticket.comment |raw }}
                         </td>
-                        {#{% if is_granted('ROLE_ADMIN') %}#}
+                        {% if ticket.treated == null %}
                             <td class="calendar-td-twig ombre">
                                 <ul>
                                     <li>
                                         <a href="{{ path('ticket_edit', { 'id': ticket.id }) }}">Modifier</a>
                                     </li>
+                                </ul>
+                            </td>
+                        {% else %}
+                            <td class="collection">
+                                <ul>
                                     <li>
-                                        <a href="{{ path('ticket_edit', { 'id': ticket.id }) }}">Ajout à l'agenda</a>
+                                        <p>Ticket traité</p>
                                     </li>
                                 </ul>
                             </td>
-                        {#{% endif %}#}
+                        {% endif %}
                     </tr>
 
                 {% endfor %}
 
                 </tbody>
-                {% if is_granted('ROLE_ADMIN') %}
-                <tfoot>
-                    <tr>
-                        <td colspan="2"></td>
-                    <td>
-                        <ul class="actions">
-                            <li>
-                                <a href="{{ path('ticket_new') }}" class="button small primary icon fa-download">Nouveau</a>
-                            </li>
-                        </ul>
-                    </td>
-                    </tr>
-                </tfoot>
-                {% endif %}
             </table>
 
         </div>

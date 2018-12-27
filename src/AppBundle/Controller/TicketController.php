@@ -13,14 +13,29 @@ use Symfony\Component\HttpFoundation\Request;
 class TicketController extends Controller
 {
     /**
-     * Lists all ticket entities.
+     * Lists ticket entities untreated.
      *
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $tickets = $em->getRepository('AppBundle:Ticket')->findAll();
+        $tickets = $em->getRepository('AppBundle:Ticket')->findBy( array('treated' => null) );
+
+        return $this->render('ticket/index.html.twig', array(
+            'tickets' => $tickets,
+        ));
+    }
+
+    /**
+     * Lists ticket entities treated.
+     *
+     */
+    public function treatedAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $tickets = $em->getRepository('AppBundle:Ticket')->findBy( array('treated' => 1) );
 
         return $this->render('ticket/index.html.twig', array(
             'tickets' => $tickets,
@@ -43,7 +58,7 @@ class TicketController extends Controller
             $em->persist($ticket);
             $em->flush();
 
-            return $this->redirectToRoute('ticket_index', array('id' => $ticket->getId()));
+            return $this->redirectToRoute('ticket_show', array('id' => $ticket->getId()));
         }
 
         return $this->render('ticket/new.html.twig', array(
@@ -73,7 +88,7 @@ class TicketController extends Controller
     public function editAction(Request $request, Ticket $ticket)
     {
         $deleteForm = $this->createDeleteForm($ticket);
-        $editForm = $this->createForm('AppBundle\Form\TicketType', $ticket);
+        $editForm = $this->createForm('AppBundle\Form\TicketEditType', $ticket);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

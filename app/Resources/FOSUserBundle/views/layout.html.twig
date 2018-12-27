@@ -20,20 +20,26 @@
 
                     <div class="right">
                         <div class="center-align">
-                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                <a href="{{ path('fos_user_security_logout') }}" class="waves-effect waves-light btn orange darken-4">
-                                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                                </a>
-                            {% else %}
-                                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-                            {% endif %}
+                            <ul>
+                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                    <li>
+                                        <a href="{{ path('fos_user_security_logout') }}" class="waves-effect waves-light btn orange darken-4">
+                                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <li>
+                                        <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                                    </li>
+                                {% endif %}
+                                <li>
+                                    <a class="waves-effect waves-light btn red darken-4" href="{{ path('fos_user_registration_register') }}">
+                                        S'enregistrer
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                         {% block button %}
-                        <div class="">
-                            <a class="waves-effect waves-light btn red darken-4" href="{{ path('homepage') }}">
-                                Return to Home page
-                            </a>
-                        </div>
                         {% endblock %}
                     </div>
 

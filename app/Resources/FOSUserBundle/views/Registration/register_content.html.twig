@@ -12,34 +12,26 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 
-        <div class="row">
+        <div class="row m-bottom">
             <div class="col s12">
 
                 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
 
-                <div class="row">
-                    <label for="username">{{ 'security.login.username'|trans }}</label>
+                <div class="left">
+                    <label for="username">nom d'utilisateur</label>
+                    {#<label for="username">{{ 'security.login.username'|trans }}</label>#}
                     {{ form_widget(form.username, { 'attr': {'class': 'input-size'}}) }}
-                </div>
-                <div class="row">
-                    <label for="username">Familly</label>
-                    {{ form_widget(form.familly, { 'attr': {'class': 'input-size'}}) }}
-                </div>
-                <div class="row">
-                    <label for="username">Address</label>
-                    {{ form_widget(form.address, { 'attr': {'class': 'input-size'}}) }}
-                </div>
-                <div class="row">
-                        <label for="username">E-mail</label>
+
+                    <label for="username">E-mail</label>
                     {{ form_widget(form.email, { 'attr': {'class': 'input-size'}}) }}
                 </div>
-                <div class="row">
+                <div class="right m-right">
                     {{ form_widget(form.plainPassword, { 'attr': {'class': 'input-size'}}) }}
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col s12 center">
+        <div class="row m-top">
+            <div class="col s12 center m-top">
 
                 <button class="btn-floating btn-large waves-effect waves-light green darken-1 tooltipped"
                         type="submit"

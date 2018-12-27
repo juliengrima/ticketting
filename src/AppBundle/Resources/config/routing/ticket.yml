@@ -1,8 +1,3 @@
-ticket_index:
-    path:     /
-    defaults: { _controller: "AppBundle:Ticket:index" }
-    methods:  GET
-
 ticket_show:
     path:     /{id}/show
     defaults: { _controller: "AppBundle:Ticket:show" }
@@ -12,13 +7,3 @@ ticket_new:
     path:     /new
     defaults: { _controller: "AppBundle:Ticket:new" }
     methods:  [GET, POST]
-
-ticket_edit:
-    path:     /admin/{id}/edit
-    defaults: { _controller: "AppBundle:Ticket:edit" }
-    methods:  [GET, POST]
-
-ticket_delete:
-    path:     /admin/{id}/delete
-    defaults: { _controller: "AppBundle:Ticket:delete" }
-    methods:  DELETE

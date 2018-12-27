@@ -47,6 +47,11 @@ class Ticket
      */
     private $date;
 
+    /**
+     * @var bool|null
+     */
+    private $treated;
+
 
     /**
      * Get id
@@ -201,5 +206,28 @@ class Ticket
     {
         return $this->date;
     }
-}
 
+    /**
+     * Set treated.
+     *
+     * @param bool|null $treated
+     *
+     * @return Ticket
+     */
+    public function setTreated($treated = null)
+    {
+        $this->treated = $treated;
+
+        return $this;
+    }
+
+    /**
+     * Get treated.
+     *
+     * @return bool|null
+     */
+    public function getTreated()
+    {
+        return $this->treated;
+    }
+}
