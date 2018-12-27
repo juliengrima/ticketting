@@ -1,0 +1,126 @@
+{% extends 'layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col s12">
+                <h3 class="center">Résultats de votre recherche.</h3>
+
+                {# GIVE MESSAGE FOR RESEARCH #}
+
+                {% if app.session.flashBag.has('error') %}
+                    <div class="alert alert-success">
+                        {% for msg in app.session.flashBag.get('error') %}
+                            {{ msg }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if app.session.flashBag.has('success') %}
+                    <div class="alert alert-success">
+                        {% for msg in app.session.flashBag.get('success') %}
+                            {{ msg }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+
+            {# TABLE  #}
+            <table class=" responsive-table bordered striped" id="table_id">
+                <thead>
+
+                <th class="">
+                    <p class=" center">
+                        N° du ticket
+                    </p>
+                </th>
+
+                <th class="">
+                    <p class=" center">
+                        Utilisateur
+                    </p>
+                </th>
+                <th class="">
+                    <p class="center">
+                        Commentaire
+                    </p>
+                </th>
+                <th class="">
+                    <p class="align-center">
+                        Actions
+                    </p>
+                </th>
+
+                </thead>
+                <tbody>
+
+                {# RESULT LOOP #}
+
+                {% for ticket in resultats %}
+                    {% if ticket.treated != null %}
+                        <tr class="collection">
+                    {% else %}
+                        <tr class="">
+                    {% endif %}
+                        <td class="">
+                            {{ ticket.id }} <br />
+                            {% if ticket.date %}{{ ticket.date|date('d-m-Y') }}{% endif %}
+                        </td>
+                        <td class="">
+
+                            {{ ticket.society }} <br />
+                            {{ ticket.user_name }} <br />
+                            {{ ticket.phone }} <br />
+                            {{ ticket.email }}
+                        </td>
+                        <td class="">
+                            {{ ticket.comment |raw }}
+                        </td>
+                        <td class="">
+                            {% if ticket.treated == null %}
+                                <ul>
+                                    <li>
+                                        <a href="{{ path('ticket_edit', { 'id': ticket.id }) }}">Modifier</a>
+                                    </li>
+                                </ul>
+                            {% else %}
+                                <ul>
+                                    <li>
+                                        <p>Ticket traité</p>
+                                    </li>
+                                </ul>
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready( function () {
+            $('#myTable').DataTable();
+        } );
+    </script>
+{% endblock %}

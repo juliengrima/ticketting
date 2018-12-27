@@ -1,2 +1,20 @@
+ticket_index:
+  path:     /
+  defaults: { _controller: "AppBundle:Ticket:index" }
+  methods:  GET
 
+treated_index:
+  path:     /treated
+  defaults: { _controller: "AppBundle:Ticket:treated" }
+  methods:  GET
+
+ticket_edit:
+  path:     /{id}/edit
+  defaults: { _controller: "AppBundle:Ticket:edit" }
+  methods:  [GET, POST]
+
+ticket_delete:
+  path:     /{id}/delete
+  defaults: { _controller: "AppBundle:Ticket:delete" }
+  methods:  DELETE
 

@@ -1,0 +1,8 @@
+##########################################
+############   Routes Search   ###########
+##########################################
+
+searchController:
+    path:     /search
+    defaults: { _controller: SearchBundle:SearchEngine:search }
+    methods:  [GET, POST]

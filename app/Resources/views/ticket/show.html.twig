@@ -1,24 +1,26 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
+
+{% block title %}
+   Ticket {{ ticket.id }}
+{% endblock %}
+
 
 {% block body %}
-    <h1>Ticket</h1>
+    <h1>Ticket - {{ ticket.id }}</h1>
+    <h3>Déposé le :{% if ticket.date %}{{ ticket.date|date('d-m-Y') }}{% endif %} </h3>
 
     <table>
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ ticket.id }}</td>
-            </tr>
-            <tr>
-                <th>Society</th>
+                <th>Poste</th>
                 <td>{{ ticket.society }}</td>
             </tr>
             <tr>
-                <th>User_name</th>
+                <th>Utilisateur</th>
                 <td>{{ ticket.username }}</td>
             </tr>
             <tr>
-                <th>Phone</th>
+                <th>Téléphone</th>
                 <td>{{ ticket.phone }}</td>
             </tr>
             <tr>
@@ -26,27 +28,10 @@
                 <td>{{ ticket.email }}</td>
             </tr>
             <tr>
-                <th>Comment</th>
+                <th>Description de la panne</th>
                 <td>{{ ticket.comment }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{% if ticket.date %}{{ ticket.date|date('Y-m-d') }}{% endif %}</td>
             </tr>
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('ticket_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('ticket_edit', { 'id': ticket.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}

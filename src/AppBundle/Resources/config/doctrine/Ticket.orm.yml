@@ -1,3 +1,4 @@
+
 AppBundle\Entity\Ticket:
   type: entity
   table: null
@@ -18,7 +19,8 @@ AppBundle\Entity\Ticket:
       length: 100
       nullable: false
     phone:
-      type: integer
+      type: string
+      lengh: 1
     email:
       type: string
       length: 255
@@ -26,5 +28,8 @@ AppBundle\Entity\Ticket:
       type: text
     date:
       type: date
+    treated:
+      type: boolean
+      nullable: true
 
   lifecycleCallbacks: {  }

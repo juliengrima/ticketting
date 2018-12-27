@@ -9,22 +9,39 @@
         <!-- Header -->
         <header id="header">
             <div class="logo">
-                <span class="icon fa-diamond"></span>
+                {#<span class="icon fa-diamond"></span>#}
+                <h1 class="icon-title">LALIQUE</h1>
             </div>
             <div class="content">
                 <div class="inner">
-                    <h1>Dimension</h1>
-                    <p>A fully responsive site template designed by <a href="https://html5up.net">HTML5 UP</a> and released<br />
-                        for free under the <a href="https://html5up.net/license">Creative Commons</a> license.</p>
+                    <h1><a href="{{ path('homepage') }}">Maintenance ticket</a></h1>
+                    <p>For each problem there is a solution</p>
                 </div>
             </div>
             <nav>
                 <ul>
-                    <li><a href="{{ path('ticket_index') }}">Tickets</a></li>
-                    <li><a href="#work">Work</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="#elements">Elements</a></li>
+                    <li>
+                        <a href="{{ path('ticket_new') }}">Nouveau ticket</a>
+                    </li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li>
+                            <a href="{{ path('ticket_index') }}">Tickets en cours</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('treated_index') }}">Tickets traités</a>
+                        </li>
+                        <li>
+                            <form action="{{ path('searchController') }}" method="Post" class="h-form">
+                                <div class="">
+                                    <input class="input-color" name="requete" id="search" type="search" required>
+                                    <i class="material-icons h-button" id="search-burger">search</i>
+                                </div>
+                            </form>
+                        </li>
+                    {% endif %}
+                    <li>
+                        <a href="{{ path('fos_user_security_logout') }}" class="button icon fa-chevron-down scrolly">Déconnexion</a>
+                    </li>
                 </ul>
             </nav>
         </header>
@@ -35,7 +52,7 @@
 
         <!-- Footer -->
         <footer id="footer">
-            <p class="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+            <p class="copyright">&copy; Julien GRIMA - <a href="http://www.groupe-tse.fr/ecotoner/index.html">Ecotoner</a>.</p>
         </footer>
 
     </div>

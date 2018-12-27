@@ -9,37 +9,24 @@ app_ticket:
     resource: "@AppBundle/Resources/config/routing/ticket.yml"
     prefix:   /ticket
 
-###################################################################################################################
-
 ##########################################
-########   Routes Calendrier   ###########
+############   Routes Search   ###########
 ##########################################
 
-#calendar:
-#    resource: "@CalendarBundle/Resources/config/routing.yml"
-#    prefix:   /
-#    options:
-#        expose: true
+searchController:
+    path:     /search
+    defaults: { _controller: SearchBundle:SearchEngine:search }
+    methods:  [GET, POST]
 
 ##########################################
 ###########   Routes ADMIN   #############
 ##########################################
 
-#admin:
-#    resource: "@AdminBundle/Resources/config/routing.yml"
-#    prefix:   /admin
+admin_ticket:
+    resource: "@AppBundle/Resources/config/routing.yml"
+    prefix:   /admin
 
-##########################################
-############   FosJSRoutung   ############
-##########################################
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
-#fos_js_routing:
-#    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
-#    prefix:   /
-
-##########################################
-##############   FosJUser   ##############
-##########################################
-
-#fos_user:
-#    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+###################################################################################################################

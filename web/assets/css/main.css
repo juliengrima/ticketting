@@ -34,7 +34,7 @@ body {
 }
 
 ol, ul {
-	list-style: none;
+	list-style: none !important;
 }
 
 blockquote, q {
@@ -1237,6 +1237,7 @@ input, select, textarea {
 		background-image: radial-gradient(rgba(0, 0, 0, 0.25) 25%, rgba(0, 0, 0, 0) 55%);
 		max-width: 100%;
 		text-align: center;
+		margin-bottom: 5%;
 	}
 
 		#header > * {
@@ -1268,15 +1269,20 @@ input, select, textarea {
 			}
 
 		#header .logo {
-			width: 5.5rem;
-			height: 5.5rem;
+			/*width: 5.5rem;*/
+			height: 3.5rem;
+			width: 15rem;
 			line-height: 5.5rem;
 			border: solid 1px #ffffff;
-			border-radius: 100%;
+			border-radius: 5%;
 		}
 
 			#header .logo .icon:before {
 				font-size: 2rem;
+			}
+
+			.icon-title{
+				margin-top: 5px;
 			}
 
 		#header .content {
@@ -1636,3 +1642,64 @@ input, select, textarea {
 		body.is-preload #footer {
 			opacity: 0;
 		}
+
+/*------------------------- Other css -------------------------*/
+
+p{
+	height: 0px;
+}
+
+textarea{
+	width: 250px;
+	height: 120px;
+}
+
+.input-color{
+	color: #6E6E6E;
+}
+
+.input-field{
+	margin-top: 0%;
+	width: 100%;
+}
+
+.h-form{
+	height: 0px;
+	width: 100%;
+	margin-left: 2%;
+	margin-top: 1%;
+}
+
+.h-button{
+	height: 30px;
+	width: 30px;
+}
+
+.left{
+	float: left;
+}
+
+.right{
+	float: right;
+}
+
+.m-right{
+	margin-left: 20px;
+}
+
+.m-top{
+	margin-top: 10%;
+}
+
+.m-bottom{
+	margin-bottom: 2%;
+}
+
+.d-font{
+	font-style: italic;
+	font-size: 0.8em;
+}
+
+.collection{
+	color: greenyellow;
+}

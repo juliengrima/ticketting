@@ -1,53 +1,75 @@
 {% extends 'layout.html.twig' %}
 
 {% block title %}
-    Edition du ticket - n° {% for tickets in ticket %} {{ ticket.id }} {% endfor %}
+    Edition du ticket - n°{{ ticket.id }}
 {% endblock %}
 
 
 {% block body %}
 
+    {{ form_start(edit_form) }}
+    <div class="">
 
-    <div class="container">
-        {{ form_start(edit_form) }}
-        <div class="row">
-            <div class="col s12 m6 l4 valign-wrapper">
-                {{ form_widget(edit_form.society) }}
-                {{ form_errors(edit_form.society) }}
+        <div class="left">
+            <div class="m-bottom">
+                <div class="">
+                    <p>Société :</p>
+                    {{ form_widget(edit_form.society) }}
+                    {{ form_errors(edit_form.society) }}
+                </div>
             </div>
-            <div class="col s12 m6 l4 valign-wrapper">
-                {{ form_widget(edit_form.user_name) }}
-                {{ form_errors(edit_form.user_name) }}
+            <div class="m-bottom">
+                <div class="">
+                    <p>Nom et Prénom :</p>
+                    {{ form_widget(edit_form.user_name) }}
+                    {{ form_errors(edit_form.user_name) }}
+                </div>
             </div>
-            <div class="col s12 m6 l4">
-
-                {{ form_widget(edit_form.phone) }}
-                {{ form_errors(edit_form.phone) }}
-
-                {{ form_widget(edit_form.email) }}
-                {{ form_errors(edit_form.email) }}
-
+            <div class="m-bottom">
+                <div class="">
+                    <p>Téléphone <span class="d-font">(01.02.03.04.05) </span>:</p>
+                    {{ form_widget(edit_form.phone) }}
+                    {{ form_errors(edit_form.phone) }}
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col s12 m6 l4 center-align">
-                {{ form_widget(edit_form.comment) }}
-                {{ form_errors(edit_form.comment) }}
+
+        <div class="right m-right">
+            <div class="m-bottom">
+                <div class="">
+                    <p>Email :</p>
+                    {{ form_widget(edit_form.email) }}
+                    {{ form_errors(edit_form.email) }}
+                </div>
             </div>
-            <div class="s12 m6 l4 right-align">
-                <ul>
-                    <li class="spacing">
-                        <input type="submit" value="Editer" class="submit-color-edit" />
-                    </li>
-                    {{ form_end(edit_form) }}
-                    <li>
-                        {{ form_start(delete_form) }}
-                        <input type="submit" value="Supprimer" class="submit-color-del">
-                        {{ form_end(delete_form) }}
-                    </li>
+            <div class="m-bottom">
+                <div class="">
+                    <p class="center-align">Commentaires :</p>
+                    {{ form_widget(edit_form.comment) }}
+                    {{ form_errors(edit_form.comment) }}
+                </div>
             </div>
         </div>
 
     </div>
+
+    <div class="">
+        {#<p class="center-align">ticket traité :</p>#}
+        {{ form_widget(edit_form.treated, {'attr': {'id': 'demo-copy'}}) }}
+        {{ form_label(edit_form.treated, 'Ticket traité', {'label_attr': {'for': 'demo-cop'}}) }}
+        {{ form_errors(edit_form.treated) }}
+    </div>
+
+    <ul class="m-top align-center">
+        <li>
+            <input type="submit" value="Enregistrer" />
+            {{ form_end(edit_form) }}
+            {{ form_start(delete_form) }}
+        </li>
+        <li>
+            <input type="submit" value="Supprimer" class="submit-color-del">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
 
 {% endblock %}
