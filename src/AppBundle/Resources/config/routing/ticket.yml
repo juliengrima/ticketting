@@ -14,11 +14,11 @@ ticket_new:
     methods:  [GET, POST]
 
 ticket_edit:
-    path:     /{id}/edit
+    path:     /admin/{id}/edit
     defaults: { _controller: "AppBundle:Ticket:edit" }
     methods:  [GET, POST]
 
 ticket_delete:
-    path:     /{id}/delete
+    path:     /admin/{id}/delete
     defaults: { _controller: "AppBundle:Ticket:delete" }
     methods:  DELETE

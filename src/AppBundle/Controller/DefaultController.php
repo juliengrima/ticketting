@@ -11,9 +11,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/", name="passwordpage")
      */
     public function indexAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->redirectToRoute('fos_user_security_login');
+    }
+
+    /**
+     * @Route("/", name="homepage")
+     */
+    public function homePageAction(Request $request)
     {
 
         $em = $this->getDoctrine()->getManager();

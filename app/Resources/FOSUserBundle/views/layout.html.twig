@@ -1,0 +1,49 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+
+                    <div class="center-align">
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <h3>{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</h3>
+                        {% else %}
+                            <p>non connecté</p>
+                        {% endif %}
+                    </div>
+
+                    <div>
+                        {% block fos_user_content %}
+                        {% endblock fos_user_content %}
+                    </div>
+
+                    <div class="right">
+                        <div class="center-align">
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <a href="{{ path('fos_user_security_logout') }}" class="waves-effect waves-light btn orange darken-4">
+                                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                </a>
+                            {% else %}
+                                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                            {% endif %}
+                        </div>
+                        {% block button %}
+                        <div class="">
+                            <a class="waves-effect waves-light btn red darken-4" href="{{ path('homepage') }}">
+                                Return to Home page
+                            </a>
+                        </div>
+                        {% endblock %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+
+{% block javascripts %}
+
+{% endblock %}
+
