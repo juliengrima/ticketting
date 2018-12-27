@@ -5,8 +5,7 @@
     "autoload": {
         "psr-4": {
             "AppBundle\\": "src/AppBundle",
-            "SearchBundle\\": "src/SearchBundle",
-            "CalendarBundle\\": "src/CalendarBundle"
+            "SearchBundle\\": "src/SearchBundle"
         },
         "classmap": [
             "app/AppKernel.php",
