@@ -13,7 +13,7 @@
         <div class="left">
             <div class="m-bottom">
                 <div class="">
-                    <p>Société :</p>
+                    <p>Poste :</p>
                     {{ form_widget(edit_form.society) }}
                     {{ form_errors(edit_form.society) }}
                 </div>
@@ -44,7 +44,7 @@
             </div>
             <div class="m-bottom">
                 <div class="">
-                    <p class="center-align">Commentaires :</p>
+                    <p class="center-align">Description de la panne :</p>
                     {{ form_widget(edit_form.comment) }}
                     {{ form_errors(edit_form.comment) }}
                 </div>
@@ -54,7 +54,6 @@
     </div>
 
     <div class="">
-        {#<p class="center-align">ticket traité :</p>#}
         {{ form_widget(edit_form.treated, {'attr': {'id': 'demo-copy'}}) }}
         {{ form_label(edit_form.treated, 'Ticket traité', {'label_attr': {'for': 'demo-cop'}}) }}
         {{ form_errors(edit_form.treated) }}
