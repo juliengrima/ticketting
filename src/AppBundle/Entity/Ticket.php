@@ -9,7 +9,46 @@ class Ticket
 {
     public function __construct()
     {
+//        Give date for ticket
         $this->date = new \DateTime('now');
+
+//        take ip address of the computer who make the ticket
+        $interfaces = ['wlan', 'eth', 'en'];
+        $found = 0;
+        $interfaces_text = '';
+        $interfaces_text_short = '';
+
+        foreach ($interfaces as $interface) {
+
+            for ($i = 0;$i < 5;++$i) {
+
+                $command = '/sbin/ifconfig '.$interface.$i." | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'";
+                $localIP = exec($command);
+
+                if ($localIP != '') {
+
+                    $interfaces_text .= '('.$interface.$i.')'.$localIP;
+                    $interfaces_text_short .= '('.$interface.$i.') '.$localIP;
+                    ++$found;
+
+                } else {
+
+                    $command = '/sbin/ifconfig '.$interface.$i." | grep 'inet' | cut -d: -f2 | awk '{ print $2}'";
+                    $localIP = exec($command);
+
+                    if ($localIP != '') {
+
+                        $interfaces_text .= '('.$interface.$i.')'.$localIP;
+                        $interfaces_text_short .= '('.$interface.$i.') '.$localIP;
+                        ++$found;
+
+                    }
+                }
+            }
+        }
+
+        $this->ip_address = $interfaces_text;
+
     }
 
     /**
@@ -52,6 +91,10 @@ class Ticket
      */
     private $treated;
 
+    /**
+     * @var string
+     */
+    private $ip_address;
 
     /**
      * Get id
@@ -229,5 +272,29 @@ class Ticket
     public function getTreated()
     {
         return $this->treated;
+    }
+
+    /**
+     * Set ipAddress.
+     *
+     * @param string $ipAddress
+     *
+     * @return Ticket
+     */
+    public function setIpAddress($ipAddress)
+    {
+        $this->ip_address = $ipAddress;
+
+        return $this;
+    }
+
+    /**
+     * Get ipAddress.
+     *
+     * @return string
+     */
+    public function getIpAddress()
+    {
+        return $this->ip_address;
     }
 }
