@@ -20,7 +20,7 @@ AppBundle\Entity\Ticket:
       nullable: false
     phone:
       type: string
-      lengh: 1
+      lengh: 15
     email:
       type: string
       length: 255
@@ -28,6 +28,9 @@ AppBundle\Entity\Ticket:
       type: text
     date:
       type: date
+    ip_address:
+      type: string
+      length: 30
     treated:
       type: boolean
       nullable: true

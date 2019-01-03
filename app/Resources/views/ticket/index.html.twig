@@ -70,7 +70,8 @@
                     <tr class="">
                         <td class="calendar-td-twig center">
                             {{ ticket.id }} <br />
-                            {% if ticket.date %}{{ ticket.date|date('d-m-Y') }}{% endif %}
+                            {% if ticket.date %}{{ ticket.date|date('d-m-Y') }}{% endif %} <br><br>
+                            {{ ticket.ipAddress }}
                         </td>
                         <td class="calendar-td-twig center">
 
