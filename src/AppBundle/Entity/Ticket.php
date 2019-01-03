@@ -49,9 +49,6 @@ class Ticket
 
         $this->ip_address = $interfaces_text;
 
-
-
-
     }
 
     /**
