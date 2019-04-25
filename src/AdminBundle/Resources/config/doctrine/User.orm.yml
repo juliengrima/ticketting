@@ -7,4 +7,9 @@ AdminBundle\Entity\User:
             generator:
                 strategy: AUTO
 
+    oneToMany:
+        ticket:
+            targetEntity: AppBundle\Entity\Ticket
+            mappedBy: user
+
     lifecycleCallbacks: {  }

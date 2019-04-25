@@ -62,19 +62,9 @@ class Ticket
     private $society;
 
     /**
-     * @var string
-     */
-    private $user_name;
-
-    /**
      * @var integer
      */
     private $phone;
-
-    /**
-     * @var string
-     */
-    private $email;
 
     /**
      * @var string
@@ -131,30 +121,6 @@ class Ticket
     }
 
     /**
-     * Set userName
-     *
-     * @param string $userName
-     *
-     * @return Ticket
-     */
-    public function setUserName($userName)
-    {
-        $this->user_name = $userName;
-
-        return $this;
-    }
-
-    /**
-     * Get userName
-     *
-     * @return string
-     */
-    public function getUserName()
-    {
-        return $this->user_name;
-    }
-
-    /**
      * Set phone
      *
      * @param integer $phone
@@ -176,30 +142,6 @@ class Ticket
     public function getPhone()
     {
         return $this->phone;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return Ticket
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
     }
 
     /**
@@ -296,5 +238,37 @@ class Ticket
     public function getIpAddress()
     {
         return $this->ip_address;
+    }
+
+//    MAPPED BY USER
+
+    /**
+     * @var \AdminBundle\Entity\User
+     */
+    private $user;
+
+
+    /**
+     * Set user.
+     *
+     * @param \AdminBundle\Entity\User|null $user
+     *
+     * @return Ticket
+     */
+    public function setUser(\AdminBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user.
+     *
+     * @return \AdminBundle\Entity\User|null
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

@@ -14,16 +14,16 @@ AppBundle\Entity\Ticket:
       type: string
       length: 60
       nullable: false
-    user_name:
-      type: string
-      length: 100
-      nullable: false
+#    user_name:
+#      type: string
+#      length: 100
+#      nullable: false
     phone:
       type: string
       lengh: 15
-    email:
-      type: string
-      length: 255
+#    email:
+#      type: string
+#      length: 255
     comment:
       type: text
     date:
@@ -34,5 +34,13 @@ AppBundle\Entity\Ticket:
     treated:
       type: boolean
       nullable: true
+
+  manyToOne:
+      user:
+          targetEntity: AdminBundle\Entity\User
+          inversedBy: ticket
+          joinColumn:
+              name: user_id
+              referencedColumnName: id
 
   lifecycleCallbacks: {  }
