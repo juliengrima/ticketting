@@ -6,6 +6,8 @@
 
 {% block body %}
 
+    {{ dump(tickets, userid) }}
+
     <div class="container">
         <div class="row">
             <div class="col s12">
@@ -75,10 +77,12 @@
                         </td>
                         <td class="calendar-td-twig center">
 
+                            {% for user in userid %}
+                                {{ user.username }} <br>
+                                {{ user.email }}
+                            {% endfor %} <br />
                             {{ ticket.society }} <br />
-                            {{ ticket.username }} <br />
-                            {{ ticket.phone }} <br />
-                            {{ ticket.email }}
+                            {{ ticket.phone }}
                         </td>
                         <td class="calendar-td-twig ombre">
                             {{ ticket.comment |raw }}

@@ -27,13 +27,15 @@ AppBundle\Entity\Ticket:
     treated:
       type: boolean
       nullable: true
+    user_id:
+      type: integer
 
-  manyToOne:
-      user:
-          targetEntity: AdminBundle\Entity\User
-          inversedBy: ticket
-          joinColumn:
-              name: user_id
-              referencedColumnName: id
+#  manyToOne:
+#      user:
+#          targetEntity: AdminBundle\Entity\User
+#          inversedBy: ticket
+#          joinColumn:
+#              name: user_id
+#              referencedColumnName: id
 
   lifecycleCallbacks: {  }

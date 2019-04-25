@@ -7,6 +7,12 @@ namespace AppBundle\Entity;
  */
 class Ticket
 {
+    public function __toString()
+    {
+        // TODO: Implement __toString() method.
+        return $this->society . $this->user_id;
+    }
+
     public function __construct()
     {
 //        Give date for ticket
@@ -240,35 +246,33 @@ class Ticket
         return $this->ip_address;
     }
 
-//    MAPPED BY USER
-
     /**
-     * @var \AdminBundle\Entity\User
+     * @var int
      */
-    private $user;
+    private $user_id;
 
 
     /**
-     * Set user.
+     * Set userId.
      *
-     * @param \AdminBundle\Entity\User|null $user
+     * @param int $userId
      *
      * @return Ticket
      */
-    public function setUser(\AdminBundle\Entity\User $user = null)
+    public function setUserId($userId)
     {
-        $this->user = $user;
+        $this->user_id = $userId;
 
         return $this;
     }
 
     /**
-     * Get user.
+     * Get userId.
      *
-     * @return \AdminBundle\Entity\User|null
+     * @return int
      */
-    public function getUser()
+    public function getUserId()
     {
-        return $this->user;
+        return $this->user_id;
     }
 }

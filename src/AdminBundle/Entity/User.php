@@ -32,45 +32,4 @@ class User extends BaseUser
         return $this->id;
     }
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $ticket;
-
-
-    /**
-     * Add ticket.
-     *
-     * @param \AppBundle\Entity\Ticket $ticket
-     *
-     * @return User
-     */
-    public function addTicket(\AppBundle\Entity\Ticket $ticket)
-    {
-        $this->ticket[] = $ticket;
-
-        return $this;
-    }
-
-    /**
-     * Remove ticket.
-     *
-     * @param \AppBundle\Entity\Ticket $ticket
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removeTicket(\AppBundle\Entity\Ticket $ticket)
-    {
-        return $this->ticket->removeElement($ticket);
-    }
-
-    /**
-     * Get ticket.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTicket()
-    {
-        return $this->ticket;
-    }
 }

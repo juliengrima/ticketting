@@ -6,6 +6,7 @@
 
 
 {% block body %}
+
     <h1>Ticket - {{ ticket.id }}</h1>
     <h3>Déposé le :{% if ticket.date %}{{ ticket.date|date('d-m-Y') }}{% endif %} </h3>
 
@@ -17,7 +18,9 @@
             </tr>
             <tr>
                 <th>Utilisateur</th>
-                <td>{{ ticket.username }}</td>
+                {% for user in userid %}
+                    <td>{{ user.username }}</td>
+                {% endfor %}
             </tr>
             <tr>
                 <th>Téléphone</th>
@@ -25,7 +28,9 @@
             </tr>
             <tr>
                 <th>Email</th>
-                <td>{{ ticket.email }}</td>
+                {% for user in userid %}
+                    <td>{{ user.email }}</td>
+                {% endfor %}
             </tr>
             <tr>
                 <th>Description de la panne</th>
