@@ -65,48 +65,50 @@
 
                 {# RESULT LOOP #}
 
-                {% for ticket in tickets %}
+                {% if tickets is defined %}
+                    {% for ticket in tickets %}
 
-                    <tr class="">
-                        <td class="calendar-td-twig center">
-                            {{ ticket.id }} <br />
-                            {% if ticket.date %}{{ ticket.date|date('d-m-Y') }}{% endif %} <br><br>
-                            {{ ticket.ipAddress }}
-                        </td>
-                        <td class="calendar-td-twig center">
+                        <tr class="">
+                            <td class="calendar-td-twig center">
+                                {{ ticket.id }} <br />
+                                {% if ticket.date %}{{ ticket.date|date('d-m-Y') }}{% endif %} <br><br>
+                                {{ ticket.ipAddress }}
+                            </td>
+                            <td class="calendar-td-twig center">
 
-                            {% if userid is defined %}
-                                {% for user in userid %}
-                                    {{ user.username }} <br>
-                                    {{ user.email }}
-                                {% endfor %} <br />
-                            {% endif %}
-                            {{ ticket.society }} <br />
-                            {{ ticket.phone }}
-                        </td>
-                        <td class="calendar-td-twig ombre">
-                            {{ ticket.comment |raw }}
-                        </td>
-                        {% if ticket.treated == null %}
+                                {% if userid is defined %}
+                                    {% for user in userid %}
+                                        {{ user.username }} <br>
+                                        {{ user.email }}
+                                    {% endfor %} <br />
+                                {% endif %}
+                                {{ ticket.society }} <br />
+                                {{ ticket.phone }}
+                            </td>
                             <td class="calendar-td-twig ombre">
-                                <ul>
-                                    <li>
-                                        <a href="{{ path('ticket_edit', { 'id': ticket.id }) }}">Modifier</a>
-                                    </li>
-                                </ul>
+                                {{ ticket.comment |raw }}
                             </td>
-                        {% else %}
-                            <td class="collection">
-                                <ul>
-                                    <li>
-                                        <p>Ticket traité</p>
-                                    </li>
-                                </ul>
-                            </td>
-                        {% endif %}
-                    </tr>
+                            {% if ticket.treated == null %}
+                                <td class="calendar-td-twig ombre">
+                                    <ul>
+                                        <li>
+                                            <a href="{{ path('ticket_edit', { 'id': ticket.id }) }}">Modifier</a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            {% else %}
+                                <td class="collection">
+                                    <ul>
+                                        <li>
+                                            <p>Ticket traité</p>
+                                        </li>
+                                    </ul>
+                                </td>
+                            {% endif %}
+                        </tr>
 
-                {% endfor %}
+                    {% endfor %}
+                {% endif %}
 
                 </tbody>
             </table>

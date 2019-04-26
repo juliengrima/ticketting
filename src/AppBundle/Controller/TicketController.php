@@ -19,29 +19,23 @@ class TicketController extends Controller
      */
     public function indexAction()
     {
-        $user = new User();
-        $ticket = new Ticket();
 
         $em = $this->getDoctrine()->getManager();
 
-        $ticket = $em->getRepository('AppBundle:Ticket')->findBy( array('treated' => null) );
+        $tickets = $em->getRepository('AppBundle:Ticket')->findBy( array('treated' => null) );
 
-        if ($ticket == 0) {
-            $userId = $ticket[0]->getUserId();
+        if ($tickets != null) {
+            $userId = $tickets[0]->getUserId();
             $user = $em->getRepository('AdminBundle:User')->findById($userId);
 
             return $this->render('ticket/index.html.twig', array(
-                'tickets' => $ticket,
+                'tickets' => $tickets,
                 'userid' => $user,
 
             ));
         }
 
-        return $this->render('ticket/index.html.twig', array(
-            'tickets' => $ticket,
-            'userid' => $user,
-
-        ));
+        return $this->render('ticket/index.html.twig');
     }
 
     /**
@@ -54,15 +48,18 @@ class TicketController extends Controller
 
         $tickets = $em->getRepository('AppBundle:Ticket')->findBy( array('treated' => 1) );
 
-        $userId = $tickets[0]->getUserId();
-        $user = $em->getRepository('AdminBundle:User')->findById($userId);
+        if ($tickets != null) {
+            $userId = $tickets[0]->getUserId();
+            $user = $em->getRepository('AdminBundle:User')->findById($userId);
 
-        return $this->render('ticket/index.html.twig', array(
-            'tickets' => $tickets,
-            'userid' => $user,
-        ));
+            return $this->render('ticket/index.html.twig', array(
+                'tickets' => $tickets,
+                'userid' => $user,
 
+            ));
+        }
 
+        return $this->render('ticket/index.html.twig');
     }
 
     /**
@@ -122,6 +119,9 @@ class TicketController extends Controller
         $editForm = $this->createForm('AppBundle\Form\TicketEditType', $ticket);
         $editForm->handleRequest($request);
 
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('AdminBundle:User')->findBy( array('id' => $ticket->getUserId()) );
+
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
@@ -129,7 +129,8 @@ class TicketController extends Controller
         }
 
         return $this->render('ticket/edit.html.twig', array(
-            'ticket' => $ticket,
+            'tickets' => $ticket,
+            'userid' => $user,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));

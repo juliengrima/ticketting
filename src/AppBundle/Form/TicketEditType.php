@@ -14,9 +14,10 @@ class TicketEditType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('society')
-                ->add('phone')
-                ->add('comment')
+        $builder
+            //->add('society')
+               // ->add('phone')
+               // ->add('comment')
                 ->add('treated', CheckboxType::class, array(
                     'label' => false,
                     'required' => false,
