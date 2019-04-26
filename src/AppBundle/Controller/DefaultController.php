@@ -22,12 +22,6 @@ class DefaultController extends Controller
      */
     public function homePageAction(Request $request)
     {
-
-        $em = $this->getDoctrine()->getManager();
-        $tickets = $em->getRepository('AppBundle:Ticket')->findAll();
-
-        return $this->render('default/index.html.twig', array(
-            'ticket' => $tickets,
-        ));
+        return $this->render('default/index.html.twig');
     }
 }

@@ -1,11 +1,93 @@
 {% extends 'layout.html.twig' %}
 
 {% block title %}
-    Edition du ticket - n°{{ ticket.id }}
+    Edition du ticket - n°{{ tickets.id }}
 {% endblock %}
 
 
 {% block body %}
+
+    {{ form_start(edit_form) }}
+    <div class="">
+
+        <div class="left">
+            <div class="m-bottom">
+                <div class="m-bottom">
+                    <div class="">
+                        <p>Utilisateur :</p>
+                        {% for user in userid %}
+                            {{ user.username }}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div>
+                <span>--------------------------------------------------</span>
+            </div>
+            <div class="m-bottom">
+                <div class="">
+                    <p>localité du pc :</p>
+                    {{ tickets.society }}
+                </div>
+            </div>
+            <div>
+                <span>--------------------------------------------------</span>
+            </div>
+            <div class="m-bottom">
+                <div class="">
+                    <p>Téléphone <span class="d-font">(154) </span>:</p>
+                    {{ tickets.phone }}
+                </div>
+            </div>
+        </div>
+
+        <div class="right m-right">
+            <div class="m-bottom">
+                <div class="">
+                    <p>Email :</p>
+                    {% for user in userid %}
+                        {{ user.email }}
+                    {% endfor %}
+                </div>
+            </div>
+            <div>
+                <span>--------------------------------------------------</span>
+            </div>
+            <div class="m-bottom">
+                <div class="">
+                    <p class="center-align">Description de la panne :</p>
+                    {{ tickets.comment }}
+                </div>
+            </div>
+            <div>
+                <span>--------------------------------------------------</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="align-center">
+        {{ form_widget(edit_form.treated, {'attr': {'id': 'demo-copy'}}) }}
+        {{ form_label(edit_form.treated, 'Ticket traité', {'label_attr': {'for': 'demo-cop'}}) }}
+        {{ form_errors(edit_form.treated) }}
+    </div>
+
+    <ul class="m-top align-center">
+        <li>
+            <input type="submit" value="Enregistrer" />
+            {{ form_end(edit_form) }}
+            {{ form_start(delete_form) }}
+        </li>
+        <li>
+            <input type="submit" value="Supprimer" class="submit-color-del">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+    {{ form_end(edit_form) }}
+
+
+
+    {#
 
     {{ form_start(edit_form) }}
     <div class="">
@@ -21,8 +103,9 @@
             <div class="m-bottom">
                 <div class="">
                     <p>Nom et Prénom :</p>
-                    {{ form_widget(edit_form.user_name) }}
-                    {{ form_errors(edit_form.user_name) }}
+                    {% for user in userid %}
+                        {{ user.username }}
+                    {% endfor %} <br />
                 </div>
             </div>
             <div class="m-bottom">
@@ -70,5 +153,5 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
-
+#}
 {% endblock %}
