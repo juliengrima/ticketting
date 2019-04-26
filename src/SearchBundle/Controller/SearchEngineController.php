@@ -30,8 +30,13 @@ class SearchEngineController extends Controller
             // CALLING SERVICE
             $champTitre = $this->container->get('search.service')->getSearchPostTitre ($requete);
 
-            // champTitre RETURN NOTHING
             if (empty($champTitre)) {
+
+                $champAdmin = $this->container->get('search.service')->getSearchPostAdmin ($requete);
+            }
+
+            // champTitre RETURN NOTHING
+            if (empty($champTitre) && empty($champAdmin)) {
 
                 $this->addFlash (
                     'success',
@@ -57,7 +62,7 @@ class SearchEngineController extends Controller
 
             $this->addFlash (
                 'success',
-                '!!! Attention, n\'oubliez pas d\écrire un mot !!!'
+                '!!! Attention, n\'oubliez pas d\'écrire un mot !!!'
             );
 
             return $this->render ('@Search/Default/index.html.twig', array (
