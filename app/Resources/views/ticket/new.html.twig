@@ -11,22 +11,26 @@
 
         <div class="left">
             <div class="m-bottom">
+                <div class="m-bottom">
+                    <div class="">
+                        <p>Utilisateur :</p>
+                        {{ app.user.username }}
+                    </div>
+                </div>
+            </div>
+            <div>
+                <span>--------------------------------------------------</span>
+            </div>
+            <div class="m-bottom">
                 <div class="">
-                    <p>Poste :</p>
+                    <p>localité du pc :</p>
                     {{ form_widget(form.society) }}
                     {{ form_errors(form.society) }}
                 </div>
             </div>
             <div class="m-bottom">
                 <div class="">
-                    <p>Nom et Prénom :</p>
-                    {{ form_widget(form.user_name) }}
-                    {{ form_errors(form.user_name) }}
-                </div>
-            </div>
-            <div class="m-bottom">
-                <div class="">
-                    <p>Téléphone <span class="d-font">(01.02.03.04.05) </span>:</p>
+                    <p>Téléphone <span class="d-font">(154) </span>:</p>
                     {{ form_widget(form.phone) }}
                     {{ form_errors(form.phone) }}
                 </div>
@@ -37,9 +41,11 @@
             <div class="m-bottom">
                 <div class="">
                     <p>Email :</p>
-                    {{ form_widget(form.email) }}
-                    {{ form_errors(form.email) }}
+                    {{ app.user.email }}
                 </div>
+            </div>
+            <div>
+                <span>--------------------------------------------------</span>
             </div>
             <div class="m-bottom">
                 <div class="">
