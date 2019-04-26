@@ -25,9 +25,17 @@ class TicketController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $ticket = $em->getRepository('AppBundle:Ticket')->findBy( array('treated' => null) );
-        $userId = $ticket;
 
-        $user = $em->getRepository('AdminBundle:User')->findById($userId);
+        if ($ticket == 0) {
+            $userId = $ticket[0]->getUserId();
+            $user = $em->getRepository('AdminBundle:User')->findById($userId);
+
+            return $this->render('ticket/index.html.twig', array(
+                'tickets' => $ticket,
+                'userid' => $user,
+
+            ));
+        }
 
         return $this->render('ticket/index.html.twig', array(
             'tickets' => $ticket,
@@ -46,9 +54,15 @@ class TicketController extends Controller
 
         $tickets = $em->getRepository('AppBundle:Ticket')->findBy( array('treated' => 1) );
 
+        $userId = $tickets[0]->getUserId();
+        $user = $em->getRepository('AdminBundle:User')->findById($userId);
+
         return $this->render('ticket/index.html.twig', array(
             'tickets' => $tickets,
+            'userid' => $user,
         ));
+
+
     }
 
     /**
