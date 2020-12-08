@@ -3,6 +3,8 @@ wdesk_design
 
 A Symfony project created on December 17, 2018, 2:19 pm.
 
+Updated on April 29, 2019, 09:52 am
+
 
 ```
 .-------------------------------------------------------------------------------.  
@@ -22,14 +24,6 @@ A Symfony project created on December 17, 2018, 2:19 pm.
     
         ## **User instructions :**
         
-        YOU CAN VISIT THE WEB SITE AT : http://cybix-tech.com/cinemovies/web/ 
-            for admin access click on logo (c)
-                        in the footer 
-                        ex : (c) create by XXXXXXXX 
-                        
-                log : admin
-                pwd : admin
-        
          - _**Installation :**_
          Open a terminal, move to the folder where you want to clone the project, and copy the following lines of code
                    !! Make sure you have set up a recent version of GIT and COMPOSER !! :
@@ -38,10 +32,10 @@ A Symfony project created on December 17, 2018, 2:19 pm.
                 post_max_size = 128M
                 upload_max_filesize = 128M
                 
-        	1. ^$ git@github.com:juliengrima/cinemovies.git 
+        	1. ^$ git clone git@github.com:juliengrima/ticketting.git
         	ou
-        	2. ^$ git clone https://github.com/juliengrima/cinemovies.git`
-        	3. ^$ cd cinemove
+        	2. ^$ git clone https://github.com/juliengrima/ticketting.git
+        	3. ^$ cd ticketting
         	4. ^$ composer install 
         	        (follow instructions after composer's installation)
         	5. ^$ composer dump-autoload 
@@ -53,17 +47,10 @@ A Symfony project created on December 17, 2018, 2:19 pm.
         	8. ^$ php bin/console a:i --symlink 
         	        (not obligatory PUBLIC is in web) 
             9. ^$ php bin/console fos:user:create adminuser --super-admin
-                    (admin creation)
-            10 In web/images repertory create 2 repertories (downloads / videos) 
-            11 for admin access click on logo (c)
-                    in the footer 
-                    ex : (c) create by XXXXXXXX 
-            12 In the navbar use logo + color green to create a new bouton          
-                    and after create a category in dropdown
-            13 Now you can insert a new movie 
-              
-        	
-    
+                    (admin creation : 'you can change adminuser') 
+            10 When you start application you need use your admin account
+                and others must register
+
     ## when you create a bundle :
     
     Add in COMPOSER.JSON
@@ -93,14 +80,6 @@ A Symfony project created on December 17, 2018, 2:19 pm.
 
     ## **Instructions utilisateur :**
     
-    VOUS POUVEZ VISITER LE SITE WEB A L'ADRESSE : http://cybix-tech.com/cinemovies/web/ 
-        l'accès a l'administration il faut cliquer sur le logo (c)
-                        dans le footer 
-                        ex : (c) créé et géré par XXXXXXXX 
-    
-                    log : admin
-                    pwd : admin
-    
      - _**Installation :**_
      Ouvrez un terminal, déplacez-vous dans le dossier où vous souhaitez cloner le projet et copiez les lignes de code suivantes
       !! Assurez vous d'avoir paramètré une version récente de GIT et COMPOSER !! :
@@ -110,10 +89,10 @@ A Symfony project created on December 17, 2018, 2:19 pm.
                       post_max_size = 128M
                       upload_max_filesize = 128M
       
-    	1. ^$ git@github.com:juliengrima/cinemovies.git 
+    	1. ^$ git clone git@github.com:juliengrima/ticketting.git
     	ou
-    	2. ^$ git clone https://github.com/juliengrima/cinemovies.git`
-    	3. ^$ cd cinemove
+    	2. ^$ git clone https://github.com/juliengrima/ticketting.git
+    	3. ^$ cd ticketting
     	4. ^$ composer install 
     	        (Suivez les instructions succédant l'installation du composer)
     	        (l'adresse mail est vivement recommandé pour FosUser)
@@ -126,22 +105,16 @@ A Symfony project created on December 17, 2018, 2:19 pm.
     	8. ^$ php bin/console a:i --symlink 
     	        (Non obligatoire car le dossier PUBLIC est directement dans le web)
         9. ^$ php bin/console fos:user:create adminuser --super-admin
-                (création de l'administrateur)
+                (création de l'administrateur 'adminuser est le nom par défaut,
+                Il peut être changé')
         10 Dans le repertoire web/images créer 2 repertoires (downloads / videos)
         
-        11 Pour l'accès a l'administration il faut cliquer sur le logo (c)
-                dans le footer 
-                ex : (c) créé et géré par XXXXXXXX 
-        12 Utiliser le bouton + de couleur verte pour creer un nouveau classement     
-                puis avec le dropdown creer une categorie
-        13 maintenant vous pouvez inserer de nouveaux film en fonction 
-                du classement et des catégorie
-    	
-
+        11 Une fois que l'applcation est prète vous pouvez vous y connecter avec le compte 
+            administrateur ou bien enregistrer un nouveau compte utilisateur
+            
 ## Lors de la création d'un nouveau bundle:
 
 Ajouter le namespace dans COMPOSER.JSON
-
 
     "autoload": { 
 
